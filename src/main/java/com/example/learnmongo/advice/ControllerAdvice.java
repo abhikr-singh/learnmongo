@@ -1,7 +1,10 @@
 package com.example.learnmongo.advice;
 
 import com.example.learnmongo.entity.ErrorResponse;
+import com.example.learnmongo.exceptions.BadRequestException;
+import com.example.learnmongo.exceptions.ResourceAlreadyExists;
 import com.example.learnmongo.exceptions.ResourceNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -15,9 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestControllerAdvice
+@Slf4j
 public class ControllerAdvice {
 
     @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
     public ErrorResponse handleNotFound(ResourceNotFoundException ex) {
         return new ErrorResponse(HttpServletResponse.SC_NOT_FOUND,
                 HttpStatus.NOT_FOUND, ex.getMessage());
@@ -39,5 +45,26 @@ public class ControllerAdvice {
         errorMessage.setCharAt(errorMessage.length() - 2, '.');
         return new ErrorResponse(HttpServletResponse.SC_BAD_REQUEST,
                 HttpStatus.BAD_REQUEST, errorMessage.toString().trim());
+    }
+
+    @ExceptionHandler(ResourceAlreadyExists.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleAlreadyExists(ResourceAlreadyExists e) {
+        return new ErrorResponse(HttpServletResponse.SC_CONFLICT, HttpStatus.CONFLICT, e.getMessage());
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleAlreadyExists(BadRequestException e) {
+        return new ErrorResponse(HttpServletResponse.SC_BAD_REQUEST, HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ErrorResponse handleGenericException(Exception e) {
+        return new ErrorResponse(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR,
+                e.getMessage());
+
     }
 }
