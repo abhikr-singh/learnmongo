@@ -1,5 +1,7 @@
 package com.example.learnmongo.advice;
 
+import com.example.learnmongo.api.CustomerController;
+import com.example.learnmongo.api.SizeInBytesController;
 import com.example.learnmongo.entity.ErrorResponse;
 import com.example.learnmongo.exceptions.BadRequestException;
 import com.example.learnmongo.exceptions.ResourceAlreadyExists;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@RestControllerAdvice
+@RestControllerAdvice(assignableTypes = {CustomerController.class, SizeInBytesController.class})
 @Slf4j
 public class ControllerAdvice {
 

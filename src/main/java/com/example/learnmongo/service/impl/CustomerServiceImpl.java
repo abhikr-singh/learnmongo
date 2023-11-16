@@ -1,5 +1,6 @@
 package com.example.learnmongo.service.impl;
 
+import com.example.learnmongo.annotations.Loggable;
 import com.example.learnmongo.entity.Customer;
 import com.example.learnmongo.exceptions.BadRequestException;
 import com.example.learnmongo.exceptions.ResourceAlreadyExists;
@@ -50,6 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Loggable
     public void deleteCustomer(String username) {
         Customer customer = customerRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User Not Found"));

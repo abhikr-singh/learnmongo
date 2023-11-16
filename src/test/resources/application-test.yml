@@ -7,7 +7,7 @@ logging:
     root: WARN
     tomcat: INFO
     org.springframework: INFO
-    com.example.learnmongo: DEBUG
+    com.example.learnmongo: INFO
 ---
 
 spring:

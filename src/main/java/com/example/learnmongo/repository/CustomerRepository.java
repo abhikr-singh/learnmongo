@@ -10,5 +10,4 @@ import java.util.Optional;
 public interface CustomerRepository extends MongoRepository<Customer, String> {
 
     public Optional<Customer> findByUsername(String username);
-
 }

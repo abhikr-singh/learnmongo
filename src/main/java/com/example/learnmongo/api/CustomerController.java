@@ -13,12 +13,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/{version}/")
+@RequestMapping("/v1/")
 public class CustomerController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerController.class);
@@ -33,7 +34,7 @@ public class CustomerController {
 
     @PostMapping(value = "customers")
     @Loggable
-    public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> saveCustomer(@Valid @RequestBody Customer customer) {
         Customer customerDb = customerService.save(customer);
         return new ResponseEntity<>(customerDb, HttpStatus.CREATED);
     }
