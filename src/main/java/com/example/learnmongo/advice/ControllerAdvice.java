@@ -6,6 +6,7 @@ import com.example.learnmongo.entity.ErrorResponse;
 import com.example.learnmongo.exceptions.BadRequestException;
 import com.example.learnmongo.exceptions.ResourceAlreadyExists;
 import com.example.learnmongo.exceptions.ResourceNotFoundException;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestControllerAdvice(assignableTypes = {CustomerController.class, SizeInBytesController.class})

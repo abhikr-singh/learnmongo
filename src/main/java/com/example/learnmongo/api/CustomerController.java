@@ -3,6 +3,7 @@ package com.example.learnmongo.api;
 import com.example.learnmongo.annotations.Loggable;
 import com.example.learnmongo.entity.Customer;
 import com.example.learnmongo.service.CustomerService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -13,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 

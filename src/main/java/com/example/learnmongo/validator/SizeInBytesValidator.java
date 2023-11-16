@@ -1,9 +1,8 @@
 package com.example.learnmongo.validator;
 
 import com.example.learnmongo.annotations.SizeInBytes;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class SizeInBytesValidator implements ConstraintValidator<SizeInBytes, String> {
 
