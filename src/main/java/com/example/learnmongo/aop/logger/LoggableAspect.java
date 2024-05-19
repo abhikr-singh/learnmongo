@@ -25,7 +25,7 @@ public class LoggableAspect {
         Method method = signature.getMethod();
         String[] argsName = signature.getParameterNames();
         Object[] argsValue = pjp.getArgs();
-        StringBuffer argsBuffer = new StringBuffer(method.getName());
+        StringBuilder argsBuffer = new StringBuilder(method.getName());
         int argsCount = argsName.length;
         if (argsCount != 0) {
             for (int i = 0; i < argsCount; i++) {
