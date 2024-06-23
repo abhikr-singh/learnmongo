@@ -2,15 +2,20 @@ package com.example.learnmongo.api;
 
 import com.example.learnmongo.entity.SizeInBytesBean;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class SizeInBytesControllerTest {
 
     @Autowired
@@ -30,6 +35,7 @@ public class SizeInBytesControllerTest {
                 .expectStatus().isCreated();
 
     }
+
 
     @Test
     public void testSizeInBytesFailure() {

@@ -1,8 +1,7 @@
 logging:
   group:
     tomcat: org.apache.catalina, org.apache.coyote, org.apache.tomcat
-  file:
-    name: logs/application.log
+  file.name: logs/application.log
   level:
     root: WARN
     tomcat: INFO

@@ -32,17 +32,18 @@ public class CustomerController {
         return new ResponseEntity<>("HEALTHY", HttpStatus.OK);
     }
 
+
     @PostMapping(value = "customers")
     @Loggable
     public ResponseEntity<Customer> saveCustomer(@Valid @RequestBody Customer customer) {
-        Customer customerDb = customerService.save(customer);
+        var customerDb = customerService.save(customer);
         return new ResponseEntity<>(customerDb, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "customers/{username}")
     @Loggable
     public ResponseEntity<Customer> getCustomer(@PathVariable(value = "username") String username) {
-        Customer customer = customerService.getCustomer(username);
+        var customer = customerService.getCustomer(username);
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
@@ -50,7 +51,7 @@ public class CustomerController {
     @Loggable
     public ResponseEntity<Customer> patchCustomer(@PathVariable(value = "username") String username,
                                                   @RequestBody Customer customer) {
-        Customer updatedCustomer = customerService.patchCustomer(username, customer);
+        var updatedCustomer = customerService.patchCustomer(username, customer);
         return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
     }
 
@@ -58,7 +59,7 @@ public class CustomerController {
     @Loggable
     public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "username") String username,
                                                    @RequestBody Customer customer) {
-        Customer updatedCustomer = customerService.updateCustomer(username, customer);
+        var updatedCustomer = customerService.updateCustomer(username, customer);
         return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
 
     }
@@ -67,7 +68,7 @@ public class CustomerController {
     @Loggable
     public ResponseEntity<Object> deleteCustomer(@PathVariable(value = "username") String username) {
         customerService.deleteCustomer(username);
-        JSONObject jsonObject = new JSONObject();
+        var jsonObject = new JSONObject();
         jsonObject.put("message", JSONObject.stringToValue(String.format("Deleted user with username: %s", username)));
         return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
     }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,13 +16,12 @@ import java.util.Date;
 
 @Document
 @Data
-@Builder
+@NoArgsConstructor
 public class Customer {
     @Id
     private String id;
     @Indexed(unique = true)
     @NotBlank
-    @Max(3)
     private String username;
     @NotEmpty
     private String firstName;

@@ -53,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Loggable
     public void deleteCustomer(String username) {
-        Customer customer = customerRepository.findByUsername(username)
+        var customer = customerRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
         customerRepository.deleteById(customer.getId());
     }
@@ -64,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new BadRequestException("Username cannot be updated using patch request." +
                     " Kindly overwrite the user using put method");
         }
-        Customer customerInDb = customerRepository.findByUsername(username)
+        var customerInDb = customerRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User Not Found"));
         Query query = new Query();
         query.addCriteria(Criteria.where("username").is(username));
