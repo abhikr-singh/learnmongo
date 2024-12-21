@@ -5,7 +5,7 @@ logging:
   level:
     root: WARN
     tomcat: INFO
-    org.springframework: INFO
+    org.springframework: DEBUG
     com.example.learnmongo: DEBUG
 ---
 
