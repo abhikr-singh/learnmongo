@@ -22,7 +22,8 @@ public class MongoDBTestContainerEnvironment {
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
-        System.out.println("=================== "+mongoDBContainer.getReplicaSetUrl()+"================ "+mongoDBContainer.getContainerIpAddress());
+        System.out.println("=================== "+mongoDBContainer.getReplicaSetUrl()+"================ "
+                + mongoDBContainer.getHost());
         registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
     }
 }
